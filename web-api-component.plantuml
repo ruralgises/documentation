@@ -1,0 +1,41 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/users.puml
+!include DEVICONS/angular.puml
+!include DEVICONS/dotnet.puml
+!include DEVICONS/java.puml
+!include DEVICONS/postgresql.puml
+!include DEVICONS/nginx.puml
+
+title System Component diagram for Rural GIS ES
+
+Container_Boundary(cb, "Web API"){
+  Component(relCont, "Relatório Controller", "Controller: Aspnet Core", "Permite obter o relatório de uma propriedade rural")
+  Component(relServ, "Relatório Service", "Service: Aspnet Core", "Monta o relatório da propriedade rural")
+  
+  Component(infCont, "Informação Controller", "Controller: Aspnet Core", "Permite obter informações de uma propriedade rural")
+  Component(infServ, "Informação Service", "Controller: Aspnet Core", "Recupera informações da propriedade rural")
+}
+
+Container(spa, "SPA", "Angular", "Prover todas a funcionalidade para o usuário via navegador web", $sprite="angular")
+Container(geoserver, "Geoserver", "Java", "publica informações espaciais", $sprite="java")
+ContainerDb(db, "Database", "Postgres/PostGIS", "Armazenas as informações disponíveis no sistema", $sprite="postgresql")
+
+
+Rel(spa, relCont, "Solicita relatório de propriedades rurais", "json/https")
+Rel(spa, infCont, "Solicita informações de propriedades rurais", "json/https")
+
+Rel(spa, geoserver, "Solicita as imagens geoespaciais", "WMS")
+Rel(geoserver, db, "Solicita dados", "JDBC")
+
+Rel(relCont, relServ, "Solicita relatório")
+Rel(relServ, infServ, "Solicita informações")
+Rel(infCont, infServ, "Solicita informações")
+Rel(infServ, db, "Solicita dados", "JDBC")
+
+
+SHOW_FLOATING_LEGEND()
+@enduml
