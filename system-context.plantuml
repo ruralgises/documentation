@@ -4,7 +4,7 @@
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 !include FONTAWESOME/users.puml
 
-title System Context diagram for Internet Banking System
+title System Context diagram for Rural GIS ES
 
 Person(customer, "Usuários", "Donos de propriedade rural, governo e empresas públicas ou privadas", $sprite="users")
 System(analysis_system, "Sistema de Monitoramento do Desmatamento e Análise de Imóveis Rurais", "Permite que usuários análisem o desmatamento nas propriedades rurais")

@@ -9,7 +9,7 @@
 !include DEVICONS/postgresql.puml
 !include DEVICONS/nginx.puml
 
-title System Context diagram for Internet Banking System
+title System Container diagram for Rural GIS ES
 
 Person(customer, "Usuários", "Donos de propriedade rural, governo e empresas públicas ou privadas", $sprite="users")
 
