@@ -26,7 +26,8 @@ System_Boundary(sb, "Sistema de Monitoramento do Desmatamento e Análise de Imó
 
 
 Rel(customer, webapp, "Visita a página", "https")
-Rel(webapp, spa, "Entregar para os usuários", "")
+Rel(webapp, spa, "Entregar para os usuários", "https")
+Rel(customer, spa, "Solicita informações e relatórios das propriedades rurais", "https")
 Rel(spa, webapi, "Solicita informações de propriedades rurais e relatórios", "json/https")
 Rel(spa, geoserver, "Solicita as imagens geoespaciais", "WMS")
 Rel(webapi, db, "Solicita dados", "JDBC")
