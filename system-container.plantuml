@@ -1,0 +1,37 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/users.puml
+!include DEVICONS/angular.puml
+!include DEVICONS/dotnet.puml
+!include DEVICONS/java.puml
+!include DEVICONS/postgresql.puml
+!include DEVICONS/nginx.puml
+
+title System Context diagram for Internet Banking System
+
+Person(customer, "Usuários", "Donos de propriedade rural, governo e empresas públicas ou privadas", $sprite="users")
+
+System_Boundary(sb, "Sistema de Monitoramento do Desmatamento e Análise de Imóveis Rurais"){
+  Container(webapp, "Aplicação Web", "nginx", "Entrega o conteúdo estático e o SPA", $sprite="nginx")
+  
+  Container(spa, "SPA", "Angular", "Prover todas a funcionalidade para o usuário via navegador web", $sprite="angular")
+  
+  Container(webapi, "Web API", "Aspnet core", "Gera relatório e recuperar informações de propriedades rurais", $sprite="dotnet")
+  Container(geoserver, "Geoserver", "Java", "publica informações espaciais", $sprite="java")
+  
+  ContainerDb(db, "Database", "Postgres/PostGIS", "Armazenas as informações disponíveis no sistema", $sprite="postgresql")
+}
+
+
+Rel(customer, webapp, "Visita a página", "https")
+Rel(webapp, spa, "Entregar para os usuários", "")
+Rel(spa, webapi, "Solicita informações de propriedades rurais e relatórios", "json/https")
+Rel(spa, geoserver, "Solicita as imagens geoespaciais", "WMS")
+Rel(webapi, db, "Solicita dados", "JDBC")
+Rel(geoserver, db, "Solicita dados", "JDBC")
+
+
+SHOW_FLOATING_LEGEND()
+@enduml
