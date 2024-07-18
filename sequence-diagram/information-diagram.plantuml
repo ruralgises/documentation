@@ -1,0 +1,9 @@
+@startuml
+SPA -> "InformationController" : Solicita informações
+"InformationController" -> "InformationService" : Solicita informações
+database Database as Database
+"InformationService" -> Database : Solicita os dados
+Database --> "InformationService" : Retorna os dados
+"InformationService" --> "InformationController" : Retorna as informações
+"InformationController" --> SPA : Entrega os dados
+@enduml
