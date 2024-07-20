@@ -1,50 +1,50 @@
 @startuml
 
-interface LocationGeoSpatialBase {
-    {field} +string Code {get; init;}
-    {field} +string Name {get; init;}
-}
-
-interface IGeoSpatialBase {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-}
-
 class Location {
-    {field} +Municipality Municipality
-    {field} +Microregion Microregion
-    {field} +Messoregion Messorerion
+    {method} +Municipality Municipality
+    {method} +Microregion Microregion
+    {method} +Messoregion Messorerion
     {method} +Location()
     {method} +Location(Municipality municipality, Microregion microregion, Messoregion messorerion)
 }
 
+interface LocationGeoSpatialBase {
+    {method} +string Code {get; init;}
+    {method} +string Name {get; init;}
+}
+
+interface IGeoSpatialBase {
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+}
+
 class Messoregion {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +string Code {get; init;}
-    {field} +string Name {get; init;}
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +string Code {get; init;}
+    {method} +string Name {get; init;}
     {method} -Messoregion()
 }
 
 class Microregion {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +string Code {get; init;}
-    {field} +string Name {get; init;}
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +string Code {get; init;}
+    {method} +string Name {get; init;}
     {method} -Microregion()
 }
 
 class Municipality {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +string Code {get; init;}
-    {field} +string Name {get; init;}
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +string Code {get; init;}
+    {method} +string Name {get; init;}
     {method} -Municipality()
 }
 
 LocationGeoSpatialBase --|> IGeoSpatialBase
-Messoregion --|> LocationGeoSpatialBase
-Microregion --|> LocationGeoSpatialBase
-Municipality --|> LocationGeoSpatialBase
+Messoregion ..|> LocationGeoSpatialBase
+Microregion ..|> LocationGeoSpatialBase
+Municipality ..|> LocationGeoSpatialBase
 
 @enduml
