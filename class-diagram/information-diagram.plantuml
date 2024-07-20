@@ -1,0 +1,30 @@
+@startuml
+
+class InformationDatabase {
+    {field} +Entity Entity
+    {field} +string DatabaseName
+    {field} +DateOnly LastUpdate
+    {field} +bool IsOfficial
+}
+
+class RuralProperty {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+    {field} +string ThemeName
+    {field} +string Code
+    {field} +double AreaHa
+    {field} +string Status
+    {field} +string Type
+    {field} +string Condition
+    {field} +string Municipio
+    {method} -RuralProperty()
+}
+
+interface IGeoSpatialBase {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+}
+
+RuralProperty --|> IGeoSpatialBase
+
+@enduml
