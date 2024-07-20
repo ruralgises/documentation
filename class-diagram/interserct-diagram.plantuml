@@ -1,0 +1,74 @@
+@startuml
+
+interface IGeoSpatialBase {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+}
+
+interface GeoSpatialBaseIntersection {
+    {field} +double AreaIntersectHa {get; init;}
+}
+
+class Embargo {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+    {field} +double AreaIntersectHa {get; init;}
+    {field} +string IdentificationEmbargoTerm
+    {field} +DateOnly EmbargoIssuanceDate
+    {field} +string NameEmbargoed
+    {field} +string CPF_CNPJ
+    {field} +string AdministrativeProcessNumber
+    {field} +string TotalEmbargoArea
+    {field} +string InflationActNumber
+    {field} +string InfractionDescription
+    {field} +string Status
+    {field} +DateOnly RegistrationDate
+    {field} +string Legislation
+    {field} +string Article
+    {method} -Embargo()
+}
+
+class Deforestation {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+    {field} +double AreaIntersectHa {get; init;}
+    {field} +int Year
+    {method} -Deforestation()
+}
+
+class ConservationUnit {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+    {field} +double AreaIntersectHa {get; init;}
+    {field} +string UCName
+    {field} +string Category
+    {field} +string Group
+    {field} +string Realm
+    {field} +string YearCreation
+    {field} +string ActCreation
+    {field} +string CNUCCode
+    {field} +string ManagingBody
+    {method} -ConservationUnit()
+}
+
+class QuilombolaArea {
+    {field} +int Id {get; init;}
+    {field} +Geometry Geom {get; init;}
+    {field} +double AreaIntersectHa {get; init;}
+    {field} +string ProcessNumber
+    {field} +string CommunityName
+    {field} +int FamilyNumber
+    {field} +string DecreeDate
+    {field} +string Realm
+    {field} +string Phase
+    {field} +string Responsible
+    {method} -QuilombolaArea()
+}
+
+GeoSpatialBaseIntersection --|> IGeoSpatialBase
+Embargo --|> GeoSpatialBaseIntersection
+Deforestation --|> GeoSpatialBaseIntersection
+ConservationUnit --|> GeoSpatialBaseIntersection
+QuilombolaArea --|> GeoSpatialBaseIntersection
+
+@enduml
