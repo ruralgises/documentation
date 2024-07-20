@@ -1,0 +1,17 @@
+@startuml
+
+interface IGeoSpatialBase {
+    +int Id {get; init;}
+    +Geometry Geom {get; init;}
+}
+
+interface GeoSpatialBaseIntersection extends IGeoSpatialBase {
+    +double AreaIntersectHa {get; init;}
+}
+
+interface LocationGeoSpatialBase extends IGeoSpatialBase {
+    +string Code {get; init;}
+    +string Name {get; init;}
+}
+
+@enduml
