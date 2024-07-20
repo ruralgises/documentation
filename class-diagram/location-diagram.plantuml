@@ -4,7 +4,6 @@ class Location {
     {method} +Municipality Municipality
     {method} +Microregion Microregion
     {method} +Messoregion Messorerion
-    {method} +Location()
     {method} +Location(Municipality municipality, Microregion microregion, Messoregion messorerion)
 }
 
