@@ -1,21 +1,31 @@
 @startuml
 
 class RuralProperty implements IGeoSpatialBase {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +string ThemeName
-    {field} +string Code
-    {field} +double AreaHa
-    {field} +string Status
-    {field} +string Type
-    {field} +string Condition
-    {field} +string Municipio
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +string ThemeName {get; init;} = ""
+    {method} +string Code {get; init;} = ""
+    {method} +double AreaHa {get; init;}
+    {method} +string Status {get; init;} = ""
+    {method} +string Type {get; init;} = ""
+    {method} +string Condition {get; init;} = ""
+    {method} +string Municipio {get; init;} = ""
+    
+    {method} InformationDatabase InformationDatabase {get; set;}
+    {method} IList<Deforestation> Deforestations {get; set;}
+    {method} IList<Settlement> Settlements {get; set;}
+    {method} IList<ConservationUnit> ConservationUnits {get; set;}
+    {method} IList<QuilombolaArea> QuilombolaAreas {get; set;}
+    {method} IList<UseCoverage> UsesCoverages {get; set;}
+    {method} IList<Embargo> Embargoes {get; set;}
+    {method} IList<Alert> Alerts {get; set;}
+
     {method} -RuralProperty()
 }
 
 interface IGeoSpatialBase {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
 }
 
 @enduml
