@@ -1,0 +1,21 @@
+@startuml
+
+enum InformationDatabaseType {
+    RuralProperty
+    Location
+    ConservationUnit
+    Deforestation
+    Embargo
+    QuilombolaArea
+    Settlement
+    UseCoverage
+}
+
+class InformationDatabase {
+    {field} +InformationDatabaseType InformationDatabaseType
+    {field} +string DatabaseName
+    {field} +DateOnly LastUpdate
+    {field} +bool IsOfficial
+}
+
+@enduml
