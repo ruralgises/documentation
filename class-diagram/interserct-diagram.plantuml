@@ -1,74 +1,103 @@
 @startuml
 
 interface IGeoSpatialBase {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
 }
 
-interface GeoSpatialBaseIntersection {
-    {field} +double AreaIntersectHa {get; init;}
-}
-
-class Embargo {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +double AreaIntersectHa {get; init;}
-    {field} +string IdentificationEmbargoTerm
-    {field} +DateOnly EmbargoIssuanceDate
-    {field} +string NameEmbargoed
-    {field} +string CPF_CNPJ
-    {field} +string AdministrativeProcessNumber
-    {field} +string TotalEmbargoArea
-    {field} +string InflationActNumber
-    {field} +string InfractionDescription
-    {field} +string Status
-    {field} +DateOnly RegistrationDate
-    {field} +string Legislation
-    {field} +string Article
-    {method} -Embargo()
+interface IGeoSpatialBaseIntersection extends IGeoSpatialBase {
+    {method} +double AreaIntersectHa {get; init;}
 }
 
 class Deforestation {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +double AreaIntersectHa {get; init;}
-    {field} +int Year
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +int Year {get; init;}
     {method} -Deforestation()
 }
 
-class ConservationUnit {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +double AreaIntersectHa {get; init;}
-    {field} +string UCName
-    {field} +string Category
-    {field} +string Group
-    {field} +string Realm
-    {field} +string YearCreation
-    {field} +string ActCreation
-    {field} +string CNUCCode
-    {field} +string ManagingBody
+class Settlement implements IGeoSpatialBaseIntersection {
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +string CodeSIPRA {get; init;} = ""
+    {method} +string NameProject {get; init;} = ""
+    {method} +int FamilyNumber {get; init;}
+    {method} +string CreationDate {get; init;} = ""
+    {method} +string WayObtaining {get; init;} = ""
+    {method} +string DateObtaining {get; init;} = ""
+    -Settlement()
+}
+
+class ConservationUnit{
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +string UCName {get; init;} = ""
+    {method} +string Category {get; init;} = ""
+    {method} +string Group {get; init;} = ""
+    {method} +string Realm {get; init;} = ""
+    {method} +string YearCreation {get; init;} = ""
+    {method} +string ActCreation{get; init;} = ""
+    {method} +string CNUCCode {get; init;} = ""
+    {method} +string ManagingBody {get; init;} = ""
     {method} -ConservationUnit()
 }
 
-class QuilombolaArea {
-    {field} +int Id {get; init;}
-    {field} +Geometry Geom {get; init;}
-    {field} +double AreaIntersectHa {get; init;}
-    {field} +string ProcessNumber
-    {field} +string CommunityName
-    {field} +int FamilyNumber
-    {field} +string DecreeDate
-    {field} +string Realm
-    {field} +string Phase
-    {field} +string Responsible
+class QuilombolaArea implements IGeoSpatialBaseIntersection{
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +string ProcessNumber {get; init;} = ""
+    {method} +string CommunityName {get; init;} = ""
+    {method} +int FamilyNumber {get; init;} = ""
+    {method} +string DecreeDate {get; init;} = ""
+    {method} +string Realm {get; init;} = ""
+    {method} +string Phase {get; init;} = ""
+    {method} +string Responsible {get; init;} = ""
     {method} -QuilombolaArea()
 }
 
-GeoSpatialBaseIntersection --|> IGeoSpatialBase
-Embargo --|> GeoSpatialBaseIntersection
-Deforestation --|> GeoSpatialBaseIntersection
-ConservationUnit --|> GeoSpatialBaseIntersection
-QuilombolaArea --|> GeoSpatialBaseIntersection
+class UseCoverage implements IGeoSpatialBaseIntersection{
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +int Class {get; init;}
+    {method} +string Name {get; init;} = ""
+    {method} -UseCoverage()
+}
 
+class Embargo{
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +string IdentificationEmbargoTerm {get; init;} = ""
+    {method} +DateOnly EmbargoIssuanceDate {get; init;}
+    {method} +string NameEmbargoed {get; init;} = ""
+    {method} +string CPF_CNPJ {get; init;} = ""
+    {method} +string AdministrativeProcessNumber {get; init;} = ""
+    {method} +string TotalEmbargoArea {get; init;} = ""
+    {method} +string InflationActNumber {get; init;} = ""
+    {method} +string InfractionDescription {get; init;} = ""
+    {method} +string Status {get; init;} = ""
+    {method} +DateOnly RegistrationDate {get; init;}
+    {method} +string Legislation {get; init;} = ""
+    {method} +string Article {get; init;} = ""
+    -Embargo()
+}
+
+class Alert implements IGeoSpatialBaseIntersection{
+    {method} +int Id {get; init;}
+    {method} +Geometry Geom {get; init;}
+    {method} +double AreaIntersectHa {get; init;}
+    {method} +int CodeAlert {get; init;}
+    {method} +DateOnly DetectDate {get; init;}
+    {method} +string VectorPressure {get; init;} = ""
+    {method} +string Font {get; init;} = ""
+}
+
+Embargo ..right|> IGeoSpatialBaseIntersection 
+Deforestation ..down|> IGeoSpatialBaseIntersection
+ConservationUnit ..left|> IGeoSpatialBaseIntersection
 @enduml
