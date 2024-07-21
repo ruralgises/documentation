@@ -6,18 +6,17 @@ class Location {
     {method} +Messoregion Messorerion
     {method} +Location(Municipality municipality, Microregion microregion, Messoregion messorerion)
 }
-
-interface LocationGeoSpatialBase {
-    {method} +string Code {get; init;}
-    {method} +string Name {get; init;}
-}
-
 interface IGeoSpatialBase {
     {method} +int Id {get; init;}
     {method} +Geometry Geom {get; init;}
 }
 
-class Messoregion {
+interface ILocationGeoSpatialBase extends IGeoSpatialBase {
+    {method} +string Code {get; init;}
+    {method} +string Name {get; init;}
+}
+
+class Messoregion implements ILocationGeoSpatialBase{
     {method} +int Id {get; init;}
     {method} +Geometry Geom {get; init;}
     {method} +string Code {get; init;}
@@ -25,7 +24,7 @@ class Messoregion {
     {method} -Messoregion()
 }
 
-class Microregion {
+class Microregion implements ILocationGeoSpatialBase {
     {method} +int Id {get; init;}
     {method} +Geometry Geom {get; init;}
     {method} +string Code {get; init;}
@@ -33,17 +32,11 @@ class Microregion {
     {method} -Microregion()
 }
 
-class Municipality {
+class Municipality implements ILocationGeoSpatialBase {
     {method} +int Id {get; init;}
     {method} +Geometry Geom {get; init;}
     {method} +string Code {get; init;}
     {method} +string Name {get; init;}
     {method} -Municipality()
 }
-
-LocationGeoSpatialBase --|> IGeoSpatialBase
-Messoregion ..|> LocationGeoSpatialBase
-Microregion ..|> LocationGeoSpatialBase
-Municipality ..|> LocationGeoSpatialBase
-
 @enduml
