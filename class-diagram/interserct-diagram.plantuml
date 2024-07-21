@@ -14,6 +14,7 @@ class Deforestation {
     {method} +Geometry Geom {get; init;}
     {method} +double AreaIntersectHa {get; init;}
     {method} +int Year {get; init;}
+    {method} +InformationDatabase InformationDatabase {get; set;}
     {method} -Deforestation()
 }
 
@@ -27,6 +28,7 @@ class Settlement implements IGeoSpatialBaseIntersection {
     {method} +string CreationDate {get; init;} = ""
     {method} +string WayObtaining {get; init;} = ""
     {method} +string DateObtaining {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     -Settlement()
 }
 
@@ -42,6 +44,7 @@ class ConservationUnit{
     {method} +string ActCreation{get; init;} = ""
     {method} +string CNUCCode {get; init;} = ""
     {method} +string ManagingBody {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     {method} -ConservationUnit()
 }
 
@@ -56,6 +59,7 @@ class QuilombolaArea implements IGeoSpatialBaseIntersection{
     {method} +string Realm {get; init;} = ""
     {method} +string Phase {get; init;} = ""
     {method} +string Responsible {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     {method} -QuilombolaArea()
 }
 
@@ -65,6 +69,7 @@ class UseCoverage implements IGeoSpatialBaseIntersection{
     {method} +double AreaIntersectHa {get; init;}
     {method} +int Class {get; init;}
     {method} +string Name {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     {method} -UseCoverage()
 }
 
@@ -84,6 +89,7 @@ class Embargo{
     {method} +DateOnly RegistrationDate {get; init;}
     {method} +string Legislation {get; init;} = ""
     {method} +string Article {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     -Embargo()
 }
 
@@ -94,6 +100,7 @@ class Alert implements IGeoSpatialBaseIntersection{
     {method} +int CodeAlert {get; init;}
     {method} +DateOnly DetectDate {get; init;}
     {method} +string VectorPressure {get; init;} = ""
+    {method} +InformationDatabase InformationDatabase {get; set;}
     {method} +string Font {get; init;} = ""
 }
 
