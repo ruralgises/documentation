@@ -11,14 +11,14 @@ class RuralProperty implements IGeoSpatialBase {
     {method} +string Condition {get; init;} = ""
     {method} +string Municipio {get; init;} = ""
     
-    {method} InformationDatabase InformationDatabase {get; set;}
-    {method} IList<Deforestation> Deforestations {get; set;}
-    {method} IList<Settlement> Settlements {get; set;}
-    {method} IList<ConservationUnit> ConservationUnits {get; set;}
-    {method} IList<QuilombolaArea> QuilombolaAreas {get; set;}
-    {method} IList<UseCoverage> UsesCoverages {get; set;}
-    {method} IList<Embargo> Embargoes {get; set;}
-    {method} IList<Alert> Alerts {get; set;}
+    {method} +InformationDatabase InformationDatabase {get; set;}
+    {method} +IList<Deforestation> Deforestations {get; set;}
+    {method} +IList<Settlement> Settlements {get; set;}
+    {method} +IList<ConservationUnit> ConservationUnits {get; set;}
+    {method} +IList<QuilombolaArea> QuilombolaAreas {get; set;}
+    {method} +IList<UseCoverage> UsesCoverages {get; set;}
+    {method} +IList<Embargo> Embargoes {get; set;}
+    {method} +IList<Alert> Alerts {get; set;}
 
     {method} -RuralProperty()
 }
