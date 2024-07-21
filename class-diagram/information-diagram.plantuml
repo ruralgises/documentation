@@ -12,10 +12,11 @@ enum InformationDatabaseType {
 }
 
 class InformationDatabase {
-    {field} +InformationDatabaseType InformationDatabaseType
-    {field} +string DatabaseName
-    {field} +DateOnly LastUpdate
-    {field} +bool IsOfficial
+    {method} +InformationDatabaseType InformationDatabaseType {get; init;}
+    {method} +string DatabaseName {get; init;}
+    {method} +DateOnly LastUpdate {get; init;}
+    {method} +bool IsOfficial {get; init;}
+    {method} -InformationDatabase()
 }
 
 @enduml
