@@ -12,6 +12,7 @@ class RuralProperty {
     {method} +string Municipio {get; init;} = ""
     
     {method} +InformationDatabase InformationDatabase {get; set;}
+    {method} +Location Location{get; set;}
     {method} +IList<Deforestation>? Deforestations {get; set;}
     {method} +IList<Settlement>? Settlements {get; set;}
     {method} +IList<ConservationUnit>? ConservationUnits {get; set;}
@@ -22,11 +23,3 @@ class RuralProperty {
 
     {method} -RuralProperty()
 }
-
-interface IGeoSpatialBase {
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
-}
-
-RuralProperty .right|> IGeoSpatialBase 
-@enduml
