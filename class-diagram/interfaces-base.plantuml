@@ -5,11 +5,11 @@ interface IGeoSpatialBase {
     +Geometry Geom {get; init;}
 }
 
-interface GeoSpatialBaseIntersection extends IGeoSpatialBase {
+interface IGeoSpatialBaseIntersection extends IGeoSpatialBase {
     +double AreaIntersectHa {get; init;}
 }
 
-interface LocationGeoSpatialBase extends IGeoSpatialBase {
+interface ILocationGeoSpatialBase extends IGeoSpatialBase {
     +string Code {get; init;}
     +string Name {get; init;}
 }
