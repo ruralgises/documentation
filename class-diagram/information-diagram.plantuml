@@ -13,11 +13,15 @@ enum InformationDatabaseType {
 }
 
 class InformationDatabase {
-    {method} +InformationDatabaseType InformationDatabaseType {get; init;}
-    {method} +string DatabaseName {get; init;}
-    {method} +DateOnly LastUpdate {get; init;}
-    {method} +bool IsOfficial {get; init;}
+    {method} +InformationDatabaseType {get; init;} : InformationDatabaseType
+    {method} +DatabaseName {get; init;} : string
+    {method} +LastUpdate {get; init;} : DateOnly
+    {method} +IsOfficial {get; init;} : bool
     {method} -InformationDatabase()
+}
+
+interface IInformationDatabase {
+    {method} +Information {get; init;} : InformationDatabase
 }
 
 @enduml
