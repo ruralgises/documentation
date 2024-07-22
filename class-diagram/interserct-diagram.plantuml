@@ -18,7 +18,7 @@ class Deforestation {
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
     {method} +Year {get; init;} : int
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -Deforestation()
 }
 
@@ -32,7 +32,7 @@ class Settlement {
     {method} +CreationDate {get; init;} : string = ""
     {method} +WayObtaining {get; init;} : string = ""
     {method} +DateObtaining {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -Settlement()
 }
 
@@ -48,7 +48,7 @@ class ConservationUnit{
     {method} +ActCreation {get; init;} : string = ""
     {method} +CNUCCode {get; init;} : string = ""
     {method} +ManagingBody {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -ConservationUnit()
 }
 
@@ -63,7 +63,7 @@ class QuilombolaArea {
     {method} +Realm {get; init;} : string = ""
     {method} +Phase {get; init;} : string = ""
     {method} +Responsible {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -QuilombolaArea()
 }
 
@@ -73,7 +73,7 @@ class UseCoverage {
     {method} +AreaIntersectHa {get; init;} : double
     {method} +Class {get; init;} : int
     {method} +Name {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -UseCoverage()
 }
 
@@ -93,7 +93,7 @@ class Embargo {
     {method} +RegistrationDate {get; init;} : DateOnly
     {method} +Legislation {get; init;} : string = ""
     {method} +Article {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} -Embargo()
 }
 
@@ -104,7 +104,7 @@ class Alert {
     {method} +CodeAlert {get; init;} : int
     {method} +DetectDate {get; init;} : DateOnly
     {method} +VectorPressure {get; init;} : string = ""
-    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Information {get; set;} : InformationDatabase
     {method} +Font {get; init;} : string = ""
     {method} -Alert()
 }
