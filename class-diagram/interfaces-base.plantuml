@@ -1,17 +1,36 @@
 @startuml
 
+interface IInformationDatabase {
+    {method} +Information {get; init;} : InformationDatabase
+}
+
 interface IGeoSpatialBase {
     +int Id {get; init;}
     +Geometry Geom {get; init;}
 }
 
-interface IGeoSpatialBaseIntersection extends IGeoSpatialBase {
-    +double AreaIntersectHa {get; init;}
-}
+class RuralProperty implements IInformationDatabase, IGeoSpatialBase {
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +ThemeName {get; init;} : string = ""
+    {method} +Code {get; init;} : string = ""
+    {method} +AreaHa {get; init;} : double
+    {method} +Status {get; init;} : string = ""
+    {method} +Type {get; init;} : string = ""
+    {method} +Condition {get; init;} : string = ""
+    {method} +Municipio {get; init;} : string = ""
+    
+    {method} +Information {get; set;} : InformationDatabase
+    {method} +Location {get; set;} : Location
+    {method} +Deforestations {get; set;} : IList<Deforestation>?
+    {method} +Settlements {get; set;} : IList<Settlement>?
+    {method} +ConservationUnits {get; set;} : IList<ConservationUnit>?
+    {method} +QuilombolaAreas {get; set;} : IList<QuilombolaArea>?
+    {method} +UsesCoverages {get; set;} : IList<UseCoverage>?
+    {method} +Embargoes {get; set;} : IList<Embargo>?
+    {method} +Alerts {get; set;} : IList<Alert>?
 
-interface ILocationGeoSpatialBase extends IGeoSpatialBase {
-    +string Code {get; init;}
-    +string Name {get; init;}
+    {method} -RuralProperty()
 }
 
 @enduml
