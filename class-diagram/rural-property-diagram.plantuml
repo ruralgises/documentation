@@ -1,25 +1,32 @@
 @startuml
 
-class RuralProperty {
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
-    {method} +string ThemeName {get; init;} = ""
-    {method} +string Code {get; init;} = ""
-    {method} +double AreaHa {get; init;}
-    {method} +string Status {get; init;} = ""
-    {method} +string Type {get; init;} = ""
-    {method} +string Condition {get; init;} = ""
-    {method} +string Municipio {get; init;} = ""
+interface IInformationDatabase {
+    {method} +Information {get; init;} : InformationDatabase
+}
+
+class RuralProperty implements IInformationDatabase {
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +ThemeName {get; init;} : string = ""
+    {method} +Code {get; init;} : string = ""
+    {method} +AreaHa {get; init;} : double
+    {method} +Status {get; init;} : string = ""
+    {method} +Type {get; init;} : string = ""
+    {method} +Condition {get; init;} : string = ""
+    {method} +Municipio {get; init;} : string = ""
     
-    {method} +InformationDatabase InformationDatabase {get; set;}
-    {method} +Location Location{get; set;}
-    {method} +IList<Deforestation>? Deforestations {get; set;}
-    {method} +IList<Settlement>? Settlements {get; set;}
-    {method} +IList<ConservationUnit>? ConservationUnits {get; set;}
-    {method} +IList<QuilombolaArea>? QuilombolaAreas {get; set;}
-    {method} +IList<UseCoverage>? UsesCoverages {get; set;}
-    {method} +IList<Embargo>? Embargoes {get; set;}
-    {method} +IList<Alert>? Alerts {get; set;}
+    {method} +InformationDatabase {get; set;} : InformationDatabase
+    {method} +Location {get; set;} : Location
+    {method} +Deforestations {get; set;} : IList<Deforestation>?
+    {method} +Settlements {get; set;} : IList<Settlement>?
+    {method} +ConservationUnits {get; set;} : IList<ConservationUnit>?
+    {method} +QuilombolaAreas {get; set;} : IList<QuilombolaArea>?
+    {method} +UsesCoverages {get; set;} : IList<UseCoverage>?
+    {method} +Embargoes {get; set;} : IList<Embargo>?
+    {method} +Alerts {get; set;} : IList<Alert>?
 
     {method} -RuralProperty()
 }
+
+@enduml
+
