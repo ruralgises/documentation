@@ -1,42 +1,49 @@
 @startuml
 
-class Location {
-    {method} +Municipality Municipality
-    {method} +Microregion Microregion
-    {method} +Messoregion Messorerion
-    {method} +Location(Municipality municipality, Microregion microregion, Messoregion messorerion)
+class Location implements IInformationDatabase{
+    {method} +Municipality {get; init;} : Municipality
+    {method} +Microregion {get; init;} : Microregion
+    {method} +Messoregion {get; init;} : Messoregion
+    {method} +Information {get; init;} : InformationDatabase
+    {method} +Location(Municipality municipality, Microregion microregion, Messoregion messoregion)
 }
+
+interface IInformationDatabase {
+    {method} +Information {get; init;} : InformationDatabase
+}
+
 interface IGeoSpatialBase {
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
 }
 
 interface ILocationGeoSpatialBase extends IGeoSpatialBase {
-    {method} +string Code {get; init;}
-    {method} +string Name {get; init;}
+    {method} +Code {get; init;} : string
+    {method} +Name {get; init;} : string
 }
 
-class Messoregion implements ILocationGeoSpatialBase{
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
-    {method} +string Code {get; init;}
-    {method} +string Name {get; init;}
+class Messoregion implements ILocationGeoSpatialBase {
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +Code {get; init;} : string
+    {method} +Name {get; init;} : string
     {method} -Messoregion()
 }
 
 class Microregion implements ILocationGeoSpatialBase {
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
-    {method} +string Code {get; init;}
-    {method} +string Name {get; init;}
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +Code {get; init;} : string
+    {method} +Name {get; init;} : string
     {method} -Microregion()
 }
 
 class Municipality implements ILocationGeoSpatialBase {
-    {method} +int Id {get; init;}
-    {method} +Geometry Geom {get; init;}
-    {method} +string Code {get; init;}
-    {method} +string Name {get; init;}
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +Code {get; init;} : string
+    {method} +Name {get; init;} : string
     {method} -Municipality()
 }
+
 @enduml
