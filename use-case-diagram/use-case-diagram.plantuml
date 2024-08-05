@@ -20,6 +20,6 @@ usecase "UC004 - Ajuste de exibição do mapa" as UC04
 
 UC01 .> UC05: <<extend>>
 UC02 .> UC05: <<extend>>
-UC05 .> UC06: <<extend>>
+UC06 .> UC05: <<extend>>
 UC04 .> UC03: <<include>>
 @enduml
