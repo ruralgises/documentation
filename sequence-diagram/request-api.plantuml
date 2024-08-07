@@ -1,0 +1,11 @@
+@startuml
+actor Actor as Actor
+Actor -> SPA : Solicita informações
+SPA -> WebAPI : Solicita informações
+database Database as Database
+WebAPI -> Database : Solicita os dados
+Database -> WebAPI : Retorna os dados
+WebAPI -> WebAPI : Trata os dados
+WebAPI -> SPA : Retorna as informações
+SPA -> Actor : Exibe as informações
+@enduml
