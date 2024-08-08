@@ -1,12 +1,12 @@
 @startuml
 actor Actor as Actor
 Actor -> SPA : Interage com o mapa
-SPA -> GeoServer : Solicita o WMS
+SPA -> GeoServer : Solicita a imagem
 database Database as Database
 GeoServer -> Database : Solicita os dados
 Database -> GeoServer : Retorna os dados
-GeoServer -> GeoServer : Gera o WMS
-GeoServer -> SPA : Retorna o WMS
+GeoServer -> GeoServer : Gera a imagem
+GeoServer -> SPA : Retorna a imagem
 SPA -> SPA : Renderiza o mapa
 SPA -> Actor : Apresenta o mapa
 @enduml
