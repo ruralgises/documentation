@@ -1,6 +1,6 @@
 @startuml
 actor Actor as Actor
-Actor -> SPA : Interagem com o mapa
+Actor -> SPA : Interage com o mapa
 SPA -> GeoServer : Solicita o WMS
 database Database as Database
 GeoServer -> Database : Solicita os dados
