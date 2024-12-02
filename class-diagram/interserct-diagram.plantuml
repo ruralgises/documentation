@@ -2,6 +2,7 @@
 
 interface IGeoSpatialBaseIntersection extends IGeoSpatialBase {
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
 }
 
 interface IGeoSpatialBase {
@@ -11,12 +12,14 @@ interface IGeoSpatialBase {
 
 interface IInformationDatabase {
     {method} +Information {get; init;} : InformationDatabase
+    {method} +PercentageOfThePropertyArea {get; init;} : double
 }
 
 class Deforestation {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +Year {get; init;} : int
     {method} +Information {get; set;} : InformationDatabase
     {method} -Deforestation()
@@ -26,6 +29,7 @@ class Settlement {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +CodeSIPRA {get; init;} : string = ""
     {method} +NameProject {get; init;} : string = ""
     {method} +FamilyNumber {get; init;} : int
@@ -36,10 +40,26 @@ class Settlement {
     {method} -Settlement()
 }
 
+class Indigenouslands{
+    {method} +Id {get; init;} : int
+    {method} +Geom {get; init;} : Geometry
+    {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
+    {method} +LandCode {get; init;} : int
+    {method} +LandName {get; init;} : string
+    {method} +EthnicityName {get; init;} : string
+    {method} +IndigenousLandCreationPhase {get; init;} : string
+    {method} +Modality {get; init;} : string
+    {method} +adminUnitCode {get; init;} : string
+    {method} +adminUnitName {get; init;} : string
+    {method} +adminUnitAcronym {get; init;} : string
+}
+
 class ConservationUnit{
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +UCName {get; init;} : string = ""
     {method} +Category {get; init;} : string = ""
     {method} +Group {get; init;} : string = ""
@@ -56,6 +76,7 @@ class QuilombolaArea {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +ProcessNumber {get; init;} : string = ""
     {method} +CommunityName {get; init;} : string = ""
     {method} +FamilyNumber {get; init;} : int
@@ -71,6 +92,7 @@ class UseCoverage {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +Class {get; init;} : int
     {method} +Name {get; init;} : string = ""
     {method} +Information {get; set;} : InformationDatabase
@@ -81,6 +103,7 @@ class Embargo {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +IdentificationEmbargoTerm {get; init;} : string = ""
     {method} +EmbargoIssuanceDate {get; init;} : DateOnly
     {method} +NameEmbargoed {get; init;} : string = ""
@@ -101,6 +124,7 @@ class Alert {
     {method} +Id {get; init;} : int
     {method} +Geom {get; init;} : Geometry
     {method} +AreaIntersectHa {get; init;} : double
+    {method} +PercentageOfThePropertyArea {get; init;} : double
     {method} +CodeAlert {get; init;} : int
     {method} +DetectDate {get; init;} : DateOnly
     {method} +VectorPressure {get; init;} : string = ""
@@ -112,6 +136,7 @@ class Alert {
 Embargo ..up|> IGeoSpatialBaseIntersection 
 Deforestation ..right|> IGeoSpatialBaseIntersection
 ConservationUnit ..up|> IGeoSpatialBaseIntersection
+Indigenouslands ..up|> IGeoSpatialBaseIntersection
 Settlement ..|> IGeoSpatialBaseIntersection
 QuilombolaArea ..left|> IGeoSpatialBaseIntersection
 UseCoverage ..|> IGeoSpatialBaseIntersection
@@ -120,6 +145,7 @@ Alert ..|> IGeoSpatialBaseIntersection
 Embargo ..up|> IInformationDatabase 
 Deforestation ..right|> IInformationDatabase
 ConservationUnit ..up|> IInformationDatabase
+Indigenouslands ..up|> IInformationDatabase
 Settlement ..|> IInformationDatabase
 QuilombolaArea ..left|> IInformationDatabase
 UseCoverage ..|> IInformationDatabase
