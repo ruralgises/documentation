@@ -6,7 +6,7 @@ rectangle Sistema {
 usecase "UC005 - Exibir relatório" as UC05
 usecase "UC006 - Imprimir relatório" as UC06
 usecase "UC001 - Pesquisa sobre CAR" as UC01
-usecase "UC002 - Pesquisa sobre coordenada" as UC02
+usecase "UC002 - Pesquisa sobre geometria" as UC02
 usecase "UC003 - Exibir mapa" as UC03
 usecase "UC004 - Ajuste de exibição do mapa" as UC04
 }
