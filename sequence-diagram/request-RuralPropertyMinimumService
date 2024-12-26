@@ -1,0 +1,25 @@
+@startuml
+actor Usuário as Actor
+
+participant "RuralPropertyMinimumService(Frontend)" as r1
+"side-options" -> "ListRuralPropertiesMinimumService" : listenToSearchChanges(\n\tthis.CARFormControl, \n\tthis._unsubscribe$\n)
+"side-options" -> "ListRuralPropertiesMinimumService" : listRuralProperties$\n\t.subscribe()
+Actor -> "side-options": insere número CAR
+"side-options" -> "ListRuralPropertiesMinimumService" : Notifica alteração
+"ListRuralPropertiesMinimumService" -> r1 : getByCodeRuralPropretiesMinimum(\n\tcar\n)
+r1 -> "RuralPropertiesMinimumController" : RuralPropertiesMinimum/bycode
+
+participant "RuralPropertyMinimumService(Backend)" as r2
+"RuralPropertiesMinimumController" -> r2 : GetByGeometry(\n\trequest, \n\tcancellationToken\n)
+r2 -> "RuralPropertiesRepository" : GetByGeometry(\n\trequest.Geometry, \n\trequest.Skip, \n\trequest.Take, \n\tcancellationToken\n)
+"RuralPropertiesRepository" --> r2 : IList<\n\tRuralProperty\n>
+r2 -> "InformationDatabaseService" : GetByNameAsync(\n\tInformationDatabaseType\n\t\t.RuralProperty, \n\tcancellationToken\n)
+"InformationDatabaseService" --> r2 : InformationDatabaseResponse
+r2 --> "RuralPropertiesMinimumController" : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+
+"RuralPropertiesMinimumController" --> r1 : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+r1 --> "ListRuralPropertiesMinimumService" : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"ListRuralPropertiesMinimumService" -> "ListRuralPropertiesMinimumService" : salva\nGeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"ListRuralPropertiesMinimumService" --> "side-options": Notifica chegada da resposta
+"side-options" -> Actor: exibir a lista de\n propriedades rurais
+@enduml
