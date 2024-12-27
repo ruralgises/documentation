@@ -1,0 +1,27 @@
+@startuml
+autonumber
+actor Usuário as Actor
+
+"MapViewComponent" -> "ListRuralPropertiesMinimumService" : listenClickOnTheMap(\n\tunSubscribe$\n)
+"DrawInteractionComponent" -> "ListRuralPropertiesMinimumService" : addOrRemoveDrawInteraction(){\n...\n\tsearchDrawPolygon(\n\t\tgeom\n\t)\n...\n}
+"SideOptionsComponent" -> "ListRuralPropertiesMinimumService" : listRuralProperties$\n\t.subscribe()
+participant "RuralPropertyMinimumService(Frontend)" as r1
+Actor -> "MapViewComponent": insere a geometria
+"MapViewComponent" -> "ListRuralPropertiesMinimumService" : Notifica inserção da geometria
+"ListRuralPropertiesMinimumService" -> r1 : getByGeometryRuralPropretiesMinimum(\n\tgeometry\n)
+r1 -> "RuralPropertiesMinimumController" : RuralPropertiesMinimum/bygeometry
+
+participant "RuralPropertyMinimumService(Backend)" as r2
+"RuralPropertiesMinimumController" -> r2 : GetByGeometry(\n\trequest, \n\tcancellationToken\n)
+r2 -> "RuralPropertiesRepository" : GetByGeometry(\n\trequest.Geometry, \n\trequest.Skip, \n\trequest.Take, \n\tcancellationToken\n)
+"RuralPropertiesRepository" --> r2 : IList<\n\tRuralProperty\n>
+r2 -> "InformationDatabaseService" : GetByNameAsync(\n\tInformationDatabaseType\n\t\t.RuralProperty, \n\tcancellationToken\n)
+"InformationDatabaseService" --> r2 : InformationDatabaseResponse
+r2 --> "RuralPropertiesMinimumController" : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+
+"RuralPropertiesMinimumController" --> r1 : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+r1 --> "ListRuralPropertiesMinimumService" : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"ListRuralPropertiesMinimumService" -> "ListRuralPropertiesMinimumService" : salva\nGeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"ListRuralPropertiesMinimumService" --> "SideOptionsComponent": Notifica chegada da resposta
+"SideOptionsComponent" -> Actor: exibir a lista de\n propriedades rurais
+@enduml
