@@ -13,8 +13,8 @@ autonumber
 "MunicipalitiesRepository" --> "LocationRepository":  Munipality
 "LocationRepository" -> "MicroregionRepository":  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
 "MicroregionRepository" --> "LocationRepository": Microregion
-"LocationRepository" -> "mesoregionRepository":  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
-"mesoregionRepository" --> "LocationRepository": mesoregion
+"LocationRepository" -> "MesoregionRepository":  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
+"MesoregionRepository" --> "LocationRepository": mesoregion
 
 "LocationRepository" --> "LocationService": Location
 "LocationService" --> "RuralPropertyService" : Location
