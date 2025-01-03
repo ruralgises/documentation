@@ -4,7 +4,7 @@ autonumber
 "RuralPropertyService" -> "RuralPropertyRepository" : GetByCode(\n\trequest.Code, \n\tcancellationToken\n)
 "RuralPropertyRepository" -> "RuralPropertyDbContext" : RuralProperties\n\t.Where...
 "RuralPropertyDbContext" --> "RuralPropertyRepository" : IQueryable<RuralProperty>
-"RuralPropertyRepository" --> "RuralPropertyService" : List<RuralProperty>
+"RuralPropertyRepository" --> "RuralPropertyService" : RuralProperty
 "RuralPropertyService" -> "RuralPropertyService" : CompletedRuralProperty(\n\truralProperties, \n\tcancellationToken\n)
 
 "RuralPropertyService" -> "LocationService" : GetByMunipalityName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
