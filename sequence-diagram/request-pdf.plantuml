@@ -2,12 +2,14 @@
 autonumber
 actor Usuário as Actor
 
+Activate "InformationGuideComponent"
+
 Actor -> "InformationGuideComponent": solicita relatório em PDF
 participant "RuralPropertyService(Frontend)" as r1
-"InformationGuideComponent" -> r1 : downloadPdf(code)
-r1 -> "RuralPropertiesController" : RuralProperties/report
+"InformationGuideComponent" -> r1 ++: downloadPdf(code)
+r1 -> "RuralPropertiesController" ++: RuralProperties/report
 
-"RuralPropertiesController" -> "ReportPDFService" : GetReportPDF(\n\trequest, \n\tcancellationToken\n)
+"RuralPropertiesController" -> "ReportPDFService" ++: GetReportPDF(\n\trequest, \n\tcancellationToken\n)
 participant "RuralPropertyService(Backend)" as r2
 "ReportPDFService" -> r2: GetByCode(CAR, cancellationToken)
 
@@ -15,8 +17,8 @@ r2 -> "ReportPDFService" : RuralPropertyResponse
 "ReportPDFService" -> "ReportPDFService" : Compose(ReportPDFService)
 
 "ReportPDFService" --> "ReportPDFService": byte[]
-"ReportPDFService" --> "RuralPropertiesController": byte[]
-"RuralPropertiesController" --> r1 : byte[]
-r1 -> Actor : Baixa o PDF
+"ReportPDFService" --> "RuralPropertiesController" --: byte[]
+"RuralPropertiesController" --> r1 --: byte[]
+r1 -> Actor --: Baixa o PDF
 
 @enduml
