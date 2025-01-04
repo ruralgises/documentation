@@ -1,0 +1,13 @@
+@startuml
+autonumber
+actor Usuário as Actor
+
+ReportPDFService -> ReportPDF : Compose(\n\truralPropert\n)
+ReportPDF -> ReportPDF : Criar Document
+ReportPDF -> HeaderHandler : Handler(\n\tcolumn, \n\truralProperty\n)
+HeaderHandler -> RuralPropertyHandler : Handler(\n\tcolumn, \n\truralProperty\n)
+RuralPropertyHandler -> LocationHandler : Handler(\n\tcolumn, \n\truralProperty\n)
+LocationHandler -> ConservationUnitHandler : Handler(\n\tcolumn, \n\truralProperty\n)
+ConservationUnitHandler ->] : Handler(\n\tcolumn, \n\truralProperty\n)
+ReportPDF -> ReportPDFService : bytes[]
+@enduml
