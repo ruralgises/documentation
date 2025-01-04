@@ -1,5 +1,8 @@
 @startuml
 autonumber
+
+skinparam DefaultFontSize 17
+
 actor Usuário as Actor
 
 Activate MapViewComponent
