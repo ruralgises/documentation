@@ -1,28 +1,30 @@
 @startuml
+skinparam DefaultFontSize 20
 autonumber
 
-"RuralPropertyService" -> "ConservationUnitService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"ConservationUnitService" --> "RuralPropertyService" : ConservationUnit
+Activate "RuralPropertyService"
+"RuralPropertyService" -> "ConservationUnitService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"ConservationUnitService" --> "RuralPropertyService" --: ConservationUnit
 
-"RuralPropertyService" -> "DeforestationService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"DeforestationService" --> "RuralPropertyService" : Deforestation
+"RuralPropertyService" -> "DeforestationService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"DeforestationService" --> "RuralPropertyService" --: Deforestation
 
-"RuralPropertyService" -> "EmbargoService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"EmbargoService" --> "RuralPropertyService" : Embargo
+"RuralPropertyService" -> "EmbargoService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"EmbargoService" --> "RuralPropertyService" --: Embargo
 
-"RuralPropertyService" -> "QuilombolaAreaService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"QuilombolaAreaService" --> "RuralPropertyService" : QuilombolaArea
+"RuralPropertyService" -> "QuilombolaAreaService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"QuilombolaAreaService" --> "RuralPropertyService" --: QuilombolaArea
 
-"RuralPropertyService" -> "SettlementService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"SettlementService" --> "RuralPropertyService" : Settlement
+"RuralPropertyService" -> "SettlementService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"SettlementService" --> "RuralPropertyService" --: Settlement
 
-"RuralPropertyService" -> "UseCoverageService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"UseCoverageService" --> "RuralPropertyService" : UseCoverage
+"RuralPropertyService" -> "UseCoverageService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"UseCoverageService" --> "RuralPropertyService" --: UseCoverage
 
-"RuralPropertyService" -> "AlertService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"AlertService" --> "RuralPropertyService" : Alert
+"RuralPropertyService" -> "AlertService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"AlertService" --> "RuralPropertyService" --: Alert
 
-"RuralPropertyService" -> "IndigenouslandsService" : GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
-"IndigenouslandsService" --> "RuralPropertyService" : Indigenouslands
+"RuralPropertyService" -> "IndigenouslandsService" ++: GetByGeometry(\n\truralProperty.Geom, \n\tcancellationToken\n)
+"IndigenouslandsService" --> "RuralPropertyService" --: Indigenouslands
 
 @enduml
