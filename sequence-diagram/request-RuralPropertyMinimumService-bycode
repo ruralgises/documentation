@@ -27,6 +27,6 @@ r2 --> "RuralPropertiesMinimumController" --: GeoSpatialInformationResponse<\n\t
 "RuralPropertiesMinimumController" --> r1 -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 r1 --> "ListRuralPropertiesMinimumService" -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 "ListRuralPropertiesMinimumService" -> "ListRuralPropertiesMinimumService" : salva\nGeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
-"ListRuralPropertiesMinimumService" --> "SideOptionsComponent" --: Notifica chegada da resposta
-"SideOptionsComponent" -> Actor -- : exibir a lista de\n propriedades rurais
+"ListRuralPropertiesMinimumService" --> "SideOptionsComponent": Notifica chegada da resposta
+"SideOptionsComponent" -> Actor: exibir a lista de\n propriedades rurais
 @enduml
