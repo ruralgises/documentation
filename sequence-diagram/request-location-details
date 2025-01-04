@@ -1,21 +1,23 @@
 @startuml
+skinparam DefaultFontSize 17
 autonumber
 
-"RuralPropertyService" -> "RuralPropertyRepository" : GetByCode(\n\trequest.Code, \n\tcancellationToken\n)
-"RuralPropertyRepository" -> "RuralPropertyDbContext" : RuralProperties\n\t.Where...
-"RuralPropertyDbContext" --> "RuralPropertyRepository" : IQueryable<RuralProperty>
-"RuralPropertyRepository" --> "RuralPropertyService" : RuralProperty
+Activate "RuralPropertyService"
+"RuralPropertyService" -> "RuralPropertyRepository" ++ : GetByCode(\n\trequest.Code, \n\tcancellationToken\n)
+"RuralPropertyRepository" -> "RuralPropertyDbContext" ++: RuralProperties\n\t.Where...
+"RuralPropertyDbContext" --> "RuralPropertyRepository" --: IQueryable<RuralProperty>
+"RuralPropertyRepository" --> "RuralPropertyService" --: RuralProperty
 "RuralPropertyService" -> "RuralPropertyService" : CompletedRuralProperty(\n\truralProperties, \n\tcancellationToken\n)
 
-"RuralPropertyService" -> "LocationService" : GetByMunipalityName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
-"LocationService" -> "LocationRepository":  GetByMunipalityName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
-"LocationRepository" -> "MunicipalitiesRepository":  GetByName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
-"MunicipalitiesRepository" --> "LocationRepository":  Munipality
-"LocationRepository" -> "MicroregionRepository":  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
-"MicroregionRepository" --> "LocationRepository": Microregion
-"LocationRepository" -> "MesoregionRepository":  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
-"MesoregionRepository" --> "LocationRepository": mesoregion
+"RuralPropertyService" -> "LocationService" ++: GetByMunipalityName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
+"LocationService" -> "LocationRepository" ++:  GetByMunipalityName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
+"LocationRepository" -> "MunicipalitiesRepository" ++:  GetByName(\n\t\truralProperty\n\t\t.Municipio, \n\t\tcancellationToken)
+"MunicipalitiesRepository" --> "LocationRepository" --:  Munipality
+"LocationRepository" -> "MicroregionRepository" ++:  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
+"MicroregionRepository" --> "LocationRepository" -- : Microregion
+"LocationRepository" -> "MesoregionRepository" ++ :  GetByGeometry(\n\t\tmunipality\n\t\t.Geom, \n\t\tcancellationToken)
+"MesoregionRepository" --> "LocationRepository" -- : mesoregion
 
-"LocationRepository" --> "LocationService": Location
-"LocationService" --> "RuralPropertyService" : Location
+"LocationRepository" --> "LocationService" --: Location
+"LocationService" --> "RuralPropertyService" --: Location
 @enduml
