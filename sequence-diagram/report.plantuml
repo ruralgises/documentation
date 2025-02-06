@@ -5,8 +5,8 @@ SPA -> "ReportController" : Solicita Relatório
 database Database as Database
 "InformationService" -> Database : Solicita os dados
 Database --> "InformationService" : Retorna os dados
-"InformationService" --> "InformationService" : Gera relatório
 "InformationService" --> "ReportService" : Retorna as informações
+"ReportService" --> "ReportService" : Gera relatório
 "ReportService" --> "ReportController" : Retorna relatório 
 "ReportController" --> SPA : Entrega o relatório
 @enduml
