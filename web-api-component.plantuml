@@ -34,6 +34,8 @@ Rel(geoserver, db, "Solicita dados", "JDBC")
 Rel(relCont, relServ, "Solicita relatório")
 Rel(relServ, infServ, "Solicita informações")
 Rel(infCont, infServ, "Solicita informações")
+Lay_L(relCont, infCont)
+Lay_L(infServ, db)
 Rel(infServ, db, "Solicita dados", "JDBC")
 
 
