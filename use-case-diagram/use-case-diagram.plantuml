@@ -1,25 +1,27 @@
 @startuml
 skinparam actorStyle awesome
 left to right direction
+
 Usuário as User
+
 rectangle Sistema {
-usecase "UC005 - Exibir relatório" as UC05
-usecase "UC006 - Imprimir relatório" as UC06
-usecase "UC001 - Pesquisa sobre CAR" as UC01
-usecase "UC002 - Pesquisa sobre geometria" as UC02
-usecase "UC003 - Exibir mapa" as UC03
-usecase "UC004 - Ajuste de exibição do mapa" as UC04
+    usecase "UC001 - Pesquisa sobre CAR" as UC01
+    User -- UC01
+    usecase "UC002 - Pesquisa sobre geometria" as UC02
+    User -- UC02
+    usecase "UC003 - Exibir mapa" as UC03
+    User -- UC03
+    usecase "UC004 - Ajuste de exibição do mapa" as UC04
+    User -- UC04
+    usecase "UC005 - Exibir relatório" as UC05
+    User -- UC05
+    usecase "UC006 - Imprimir relatório" as UC06
+    User -- UC06
 }
 
-:User: -- (UC01)
-:User: -- (UC02)
-:User: -- (UC03)
-:User: -- (UC04)
-:User: -- (UC05)
-:User: -- (UC06)
-
-UC01 .> UC05: <<extend>>
-UC02 .> UC05: <<extend>>
-UC06 .> UC05: <<extend>>
-UC04 .> UC03: <<include>>
+UC01 .> UC05 : <<extend>>
+UC02 .> UC05 : <<extend>>
+UC06 .> UC05 : <<extend>>
+UC04 .> UC03 : <<include>>
+UC05 -[hidden]-> UC06
 @enduml
