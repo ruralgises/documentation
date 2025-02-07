@@ -10,19 +10,11 @@ Activate "SideOptionsComponent"
 "SideOptionsComponent" -> "ListRuralPropertiesMinimumService" : listRuralProperties$\n\t.subscribe()
 Deactivate "ListRuralPropertiesMinimumService"
 
-participant "RuralPropertyMinimumService(Frontend)" as r1
+participant "RuralPropertyMinimumService" as r1
 Actor -> "SideOptionsComponent": insere número CAR
 "SideOptionsComponent" -> "ListRuralPropertiesMinimumService" ++ : Notifica alteração
 "ListRuralPropertiesMinimumService" -> r1 ++ : getByCodeRuralPropretiesMinimum(\n\tcar\n)
 r1 -> "RuralPropertiesMinimumController" ++ : RuralPropertiesMinimum/bycode
-
-participant "RuralPropertyMinimumService(Backend)" as r2
-"RuralPropertiesMinimumController" -> r2 ++: GetByCode(\n\trequest, \n\tcancellationToken\n)
-r2 -> "RuralPropertiesRepository" ++ : GetByCode(\n\trequest.Code, \n\trequest.Skip, \n\trequest.Take, \n\tcancellationToken\n)
-"RuralPropertiesRepository" --> r2 -- : IList<\n\tRuralProperty\n>
-r2 -> "InformationDatabaseService" ++: GetByNameAsync(\n\tInformationDatabaseType\n\t\t.RuralProperty, \n\tcancellationToken\n)
-"InformationDatabaseService" --> r2 -- : InformationDatabaseResponse
-r2 --> "RuralPropertiesMinimumController" --: GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 
 "RuralPropertiesMinimumController" --> r1 -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 r1 --> "ListRuralPropertiesMinimumService" -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
