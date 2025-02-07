@@ -1,0 +1,36 @@
+@startuml
+autonumber
+
+skinparam DefaultFontSize 17
+
+actor Usuário as Actor
+
+Activate MapViewComponent
+Activate DrawInteractionComponent
+Activate SideOptionsComponent
+"MapViewComponent" -> "ListRuralPropertiesMinimumService" ++: listenClickOnTheMap(\n\tunSubscribe$\n)
+"SideOptionsComponent" -> "ListRuralPropertiesMinimumService": listRuralProperties$\n\t.subscribe()
+
+participant "RuralPropertyMinimumService" as r1
+
+opt
+    Actor -> "DrawInteractionComponent": Solicita desenhar um polígono
+    "DrawInteractionComponent" -> "DrawInteractionComponent": configura o mapa\n para desenhar polígono
+end
+
+Actor -> "MapViewComponent": insere a geometria
+"MapViewComponent" -> "ListRuralPropertiesMinimumService": Notifica inserção da geometria
+"ListRuralPropertiesMinimumService" -> r1 ++: getByGeometryRural-\nPropretiesMinimum(\n\tgeometry\n)
+r1 -> "Back-end" ++: RuralProperties-\nMinimum/bygeometry
+
+
+"Back-end" --> r1 --: GeoSpatialInforma-\ntionResponse<\n\tRuralProperty-\nMinimumResponse\n>
+r1 --> "ListRuralPropertiesMinimumService" -- : GeoSpatialInforma-\ntionResponse<\n\tRuralProperty-\nMinimumResponse\n>
+"ListRuralPropertiesMinimumService" -> "ListRuralPropertiesMinimumService" : salva\nGeoSpatialInforma-\ntionResponse<\n\tRuralProperty-\nMinimumResponse\n>
+"ListRuralPropertiesMinimumService" --> "SideOptionsComponent" --: Notifica chegada da resposta
+"SideOptionsComponent" -> Actor: exibir a lista de\n propriedades rurais
+
+Deactivate MapViewComponent
+Deactivate DrawInteractionComponent
+Deactivate SideOptionsComponent
+@enduml
