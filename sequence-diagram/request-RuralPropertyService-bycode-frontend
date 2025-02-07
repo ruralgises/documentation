@@ -1,0 +1,21 @@
+@startuml
+autonumber
+actor Usuário as Actor
+
+Activate "SideOptionsComponent"
+Actor -> "SideOptionsComponent": seleciona a\n propriedade rural 
+"SideOptionsComponent" -> "CARSelectedStateService" ++: update(selectedItems)
+
+participant  "InformationGuideComponent"
+participant "RuralPropertyService" as r1
+
+"CARSelectedStateService" -> r1 ++: getByCodeRuralPropreties(\n\truralPropertyMinimum.code\n)
+r1 -> "Back-end" ++ : RuralProperties/bycode
+
+"Back-end" --> r1 --: RuralPropertyResponse
+r1 --> "CARSelectedStateService" -- : RuralPropertyResponse
+"CARSelectedStateService" -> "CARSelectedStateService" : salva\n\tRuralPropertyResponse
+"CARSelectedStateService" --> "InformationGuideComponent" --++: Notifica chegada da resposta
+"InformationGuideComponent" -> Actor : exibir a as informações\nda propriedade rural
+
+@enduml
