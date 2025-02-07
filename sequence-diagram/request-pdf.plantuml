@@ -16,7 +16,6 @@ participant "RuralPropertyService(Backend)" as r2
 r2 -> "ReportPDFService" : RuralPropertyResponse
 "ReportPDFService" -> "ReportPDFService" : Compose(ReportPDFService)
 
-"ReportPDFService" --> "ReportPDFService": byte[]
 "ReportPDFService" --> "RuralPropertiesController" --: byte[]
 "RuralPropertiesController" --> r1 --: byte[]
 r1 -> Actor --: Baixa o PDF
