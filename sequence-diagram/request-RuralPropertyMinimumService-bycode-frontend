@@ -14,9 +14,9 @@ participant "RuralPropertyMinimumService" as r1
 Actor -> "SideOptionsComponent": insere número CAR
 "SideOptionsComponent" -> "ListRuralPropertiesMinimumService" ++ : Notifica alteração
 "ListRuralPropertiesMinimumService" -> r1 ++ : getByCodeRuralPropretiesMinimum(\n\tcar\n)
-r1 -> "RuralPropertiesMinimumController" ++ : RuralPropertiesMinimum/bycode
+r1 -> "Back-end" ++ : RuralPropertiesMinimum/bycode
 
-"RuralPropertiesMinimumController" --> r1 -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"Back-end" --> r1 -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 r1 --> "ListRuralPropertiesMinimumService" -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 "ListRuralPropertiesMinimumService" -> "ListRuralPropertiesMinimumService" : salva\nGeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
 "ListRuralPropertiesMinimumService" --> "SideOptionsComponent": Notifica chegada da resposta
