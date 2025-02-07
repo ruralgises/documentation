@@ -1,0 +1,19 @@
+@startuml
+autonumber
+
+skinparam DefaultFontSize 17
+
+actor "Front-end" as Actor
+
+Actor -> "RuralPropertiesMinimumController" ++: RuralProperties-\nMinimum/bygeometry
+
+participant "RuralPropertyMinimumService(Backend)" as r2
+"RuralPropertiesMinimumController" -> r2 ++ : GetByGeometry(\n\trequest, \n\tcancellationToken\n)
+r2 -> "RuralPropertiesRepository" ++: GetByGeometry(\n\trequest.Geometry, \n\trequest.Skip, \n\trequest.Take, \n\tcancellationToken\n)
+"RuralPropertiesRepository" --> r2 -- : IList<\n\tRuralProperty\n>
+r2 -> "InformationDatabaseService" ++ : GetByNameAsync(\n\tInformationDatabaseType\n\t\t.RuralProperty, \n\tcancellationToken\n)
+"InformationDatabaseService" --> r2 -- : InformationDatabaseResponse
+r2 --> "RuralPropertiesMinimumController" --: GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+
+"RuralPropertiesMinimumController" --> Actor --: GeoSpatialInfor-\nmationResponse<\n\tRuralProperty-\nMinimumResponse\n>
+@enduml
