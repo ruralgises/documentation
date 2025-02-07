@@ -1,0 +1,18 @@
+@startuml
+autonumber
+
+skinparam DefaultFontSize 17
+
+actor Front-end as Actor
+
+Actor -> "RuralPropertiesMinimumController" ++ : RuralPropertiesMinimum/bycode
+
+participant "RuralPropertyMinimumService(Backend)" as r1
+"RuralPropertiesMinimumController" -> r1 ++: GetByCode(\n\trequest, \n\tcancellationToken\n)
+r1 -> "RuralPropertiesRepository" ++ : GetByCode(\n\trequest.Code, \n\trequest.Skip, \n\trequest.Take, \n\tcancellationToken\n)
+"RuralPropertiesRepository" --> r1 -- : IList<\n\tRuralProperty\n>
+r1 -> "InformationDatabaseService" ++: GetByNameAsync(\n\tInformationDatabaseType\n\t\t.RuralProperty, \n\tcancellationToken\n)
+"InformationDatabaseService" --> r1 -- : InformationDatabaseResponse
+r1 --> "RuralPropertiesMinimumController" --: GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+"RuralPropertiesMinimumController" --> Actor -- : GeoSpatialInformationResponse<\n\tRuralPropertyMinimumResponse\n>
+@enduml
