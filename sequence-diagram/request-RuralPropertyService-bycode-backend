@@ -1,0 +1,18 @@
+@startuml
+autonumber
+actor "Front-end" as Actor
+
+Actor -> "RuralPropertiesController" ++ : RuralProperties/bycode
+
+participant "RuralPropertyService" as r2
+
+"RuralPropertiesController" -> r2 ++: GetByCode(\n\trequest, \n\tcancellationToken\n)
+r2 -> "RuralPropertiesRepository" ++: GetByCode(\n\trequest.Code, \n\tcancellationToken\n)
+"RuralPropertiesRepository" -> "RuralPropertiesDbContext" ++: RuralProperties\n\t.Where...
+"RuralPropertiesDbContext" --> "RuralPropertiesRepository" --: IQueryable<RuralProperty>
+"RuralPropertiesRepository" --> r2 --: IList<\n\tRuralProperty\n>
+r2 -> r2 : CompletedRuralProperty(\n\truralProperties\n\t\t.RuralProperty, \n\tcancellationToken\n)
+r2 --> "RuralPropertiesController" --: RuralPropertyResponse
+
+"RuralPropertiesController" --> Actor --: RuralPropertyResponse
+@enduml
