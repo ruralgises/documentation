@@ -2,12 +2,18 @@
 autonumber
 
 Activate ReportPDFService
-ReportPDFService -> ReportPDF ++: Compose(\n\truralPropert\n)
+ReportPDFService -> ReportPDF ++: Compose(\nruralPropert\n)
 ReportPDF -> ReportPDF : Criar Document
-ReportPDF -> HeaderHandler ++: Handler(\n\tcolumn, \n\truralProperty\n)
-HeaderHandler -> RuralPropertyHandler --++: Handler(\n\tcolumn, \n\truralProperty\n)
-RuralPropertyHandler -> LocationHandler --++: Handler(\n\tcolumn, \n\truralProperty\n)
-LocationHandler -> ConservationUnitHandler --++: Handler(\n\tcolumn, \n\truralProperty\n)
-ConservationUnitHandler ->] --: Handler(\n\tcolumn, \n\truralProperty\n)
+ReportPDF -> HeaderHandler ++: Handler(\ncolumn, \nruralProperty\n)
+HeaderHandler -> "RuralProperty-\nHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"RuralProperty-\nHandler" -> LocationHandler --++: Handler(\ncolumn, \nruralProperty\n)
+LocationHandler -> "Conservation-\nUnitHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"Conservation-\nUnitHandler" -> "Quilombola-\nAreaHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"Quilombola-\nAreaHandler" -> "Settlement-\nHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"Settlement-\nHandler" -> "Indigenous-\nLandsHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"Indigenous-\nLandsHandler" -> "UseCovera-\ngeHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"UseCovera-\ngeHandler" -> "AlertHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"AlertHandler" -> "Deforestation-\nHandler" --++: Handler(\ncolumn, \nruralProperty\n)
+"Deforestation-\nHandler" -> "Embargo-\nHandler" --: Handler(\ncolumn, \nruralProperty\n)
 ReportPDF -> ReportPDFService --: bytes[]
 @enduml
